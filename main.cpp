@@ -114,8 +114,10 @@ int main() {
                 break;
             case 2:
                 mostrarEnvios();
+                break;
             case 3:
                 ordenarEnvios();
+                break;
             case 4:
                 cout<<"Saliendo del programa"<<endl;
             default:
