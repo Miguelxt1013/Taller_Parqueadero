@@ -45,6 +45,21 @@ void registrarEnvios() {
     }
 }
 
+void mostrarEnvios() {
+    if (cab == NULL) {
+        cout << "No hay envios registrados."<<endl;
+        return;
+    }
+    aux = cab;
+    cout << "\nLista de envios: "<<endl;
+    while (aux != NULL) {
+        cout << "Destinatario: " << Nombre <<endl;
+        cout << "Codigo de seguimiento: " << aux->Codigo <<endl;
+        cout << "Prioridad: " << (aux->op == 1 ? "Alta" : aux->op == 2 ? "Media" : "Baja") <<endl;
+        cout << "Destino: " << (aux->Destino == 1 ? "Nacional" : "Internacional") <<endl<<endl;
+        aux = aux->sig;
+    }
+}
 
 int main() {
     int opcion;
@@ -61,6 +76,8 @@ int main() {
             case 1:
                 registrarEnvios();
                 break;
+            case 2:
+                mostrarEnvios();
             default:
                 cout << "Opcion invalida. Intente nuevamente. "<<endl;
         }
