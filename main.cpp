@@ -61,6 +61,42 @@ void mostrarEnvios() {
     }
 }
 
+void ordenarEnvios() {
+    if (cab == NULL || cab->sig == NULL) {
+        cout << "No hay suficientes envios para ordenar."<<endl;
+        return;
+    }
+
+    int auxCedula, auxPrioridad, auxDestino;
+    aux2 = cab;
+    while (aux2->sig != NULL) {
+        aux = cab;
+        while (aux->sig != NULL) {
+            if (aux->op > aux->sig->op || 
+                (aux->op == aux->sig->op && aux->Destino < aux->sig->Destino) ||
+                (aux->op == aux->sig->op && aux->Destino == aux->sig->Destino && aux->Codigo > aux->sig->Codigo)) {
+                
+                auxCedula = aux->Codigo;
+                auxPrioridad = aux->op;
+                auxDestino = aux->Destino;
+
+                aux->Codigo = aux->sig->Codigo;
+                aux->op = aux->sig->op;
+                aux->Destino = aux->sig->Destino;
+
+                aux->sig->Codigo = auxCedula;
+                aux->sig->op = auxPrioridad;
+                aux->sig->Destino = auxDestino;
+            }
+            aux = aux->sig;
+        }
+        aux2 = aux2->sig;
+    }
+
+    cout << "Envios ordenados exitosamente."<<endl;
+}
+
+
 int main() {
     int opcion;
     do {
@@ -78,6 +114,10 @@ int main() {
                 break;
             case 2:
                 mostrarEnvios();
+            case 3:
+                ordenarEnvios();
+            case 4:
+                cout<<"Saliendo del programa"<<endl;
             default:
                 cout << "Opcion invalida. Intente nuevamente. "<<endl;
         }
